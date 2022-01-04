@@ -1,19 +1,30 @@
 export default function App() {
   return (
     <div>
-      <Hellow />
+      <MyComponent />
     </div>
   );
 }
-
-function Hellow() {
+//====================Learning Interpolation============//
+//CAREFUL:: when working with object
+function MyComponent() {
+  let username = "Gaurav";
+  let email = "gaurav@gmail.com";
+  let list = ["delhi", "Mumbai", "Nashik"];
+  let obj = { id: 1, name: "rahul" };
   return (
     <div>
-      <h1>Hello world</h1>
+      <h1>Learning Interpolation</h1>
+      <h1>
+        {username} {email}
+      </h1>
+      <h1>{list}</h1>
+      <h1>
+        {obj.id} {obj.name}
+      </h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero quod
-        dolores, cupiditate nisi facere accusantium aut ipsa nobis eveniet. Nam
-        molestiae sunt ipsa dolore debitis et quo iusto ducimus nobis!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed in placeat
+        esse reprehenderit sequi officia sunt eius perspiciatis suscipit sint!
       </p>
     </div>
   );

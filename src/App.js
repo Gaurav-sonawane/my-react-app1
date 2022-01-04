@@ -1,50 +1,47 @@
+import { useState } from "react";
 export default function App() {
-  let list = [1, 1, 1, 1, 1, 1, 1, 1];
-
   return (
-    <div className="container-fluid">
-      <Header />
-
-      <div className="row mt-1">
-        {list.map(() => (
-          <div className="col-sm-12 col-md-4 mb1">
-            <MyCard />
-          </div>
-        ))}
-      </div>
+    <div>
+      <MyComponent />
     </div>
   );
 }
 
-function Header() {
-  return (
-    <div className="row bg-dark text-light p-3 sticky-top">
-      <div className="col h3">React App</div>
-    </div>
-  );
-}
+function MyComponent() {
+  const id1 = 100;
+  const list = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const [cardCss, setCardcss] = useState();
 
-function MyCard() {
-  let cardTitle = "Card Titleee";
+  const PrimaryTheme = () => setCardcss("bg-primary text-light fs-3 p-4 mb-1");
+  const DarkTheme = () => setCardcss("bg-dark text-light fs-3 p-4 mb-1");
+  const DangerTheme = () => setCardcss("bg-danger text-light fs-3 p-4 mb-1");
+
   return (
-    <div className="card">
-      <div className="card-header">{cardTitle}</div>
-      <div className="card-body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint obcaecati,
-        officiis nisi earum alias numquam recusandae possimus aut illo
-        asperiores dolores unde sit! Assumenda autem hic, eum accusamus saepe
-        consequuntur.
-        <input
-          className="btn btn-sm btn-outline-secondary w-50 mt-2"
-          type="button"
-          value="Buy Now"
-        />
-        <input
-          className="btn btn-sm btn-outline-secondary w-50 mt-2"
-          type="button"
-          value="Add to cart"
-        />
-      </div>
+    <div>
+      <input
+        className="btn btn-primary btn-sm"
+        type="button"
+        value="Primary Theme"
+        onClick={PrimaryTheme}
+      />
+      <input
+        className="btn btn-dark btn-sm"
+        type="button"
+        value="Dark Theme"
+        onClick={DarkTheme}
+      />
+      <input
+        className="btn btn-danger btn-sm"
+        type="button"
+        value="Danger Theme"
+        onClick={DangerTheme}
+      />
+
+      {list.map(() => (
+        <div className={cardCss}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, ipsa.
+        </div>
+      ))}
     </div>
   );
 }

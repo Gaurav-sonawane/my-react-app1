@@ -9,81 +9,23 @@ export default function App() {
   );
 }
 function MyFun() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Mobile, setMobile] = useState("");
+  const [ajaxList, setAjaxList] = useState([]);
+  const makeAjaxCall = async () => {
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    const response = await fetch(url);
+    const result = await response.json();
 
-  const [userList, setUserList] = useState([]);
-
-  const handleUsername = (e) => {
-    setUsername(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleMobile = (e) => {
-    setMobile(e.target.value);
-  };
-
-  const registerUser = () => {
-    const user = {
-      username: username,
-      password: password,
-      email: Email,
-      Mobile: Mobile,
-    };
-
-    const newList = [user, ...userList];
-    setUserList(newList);
+    setAjaxList(result);
   };
 
   return (
     <div>
-      <h1>Working With Registration</h1>
-      <div>
-        <input
-          type="text"
-          value={username}
-          onChange={handleUsername}
-          placeholder="enter username"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          value={password}
-          onChange={handlePassword}
-          placeholder="enter password"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          value={Email}
-          onChange={handleEmail}
-          placeholder="enter Email"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          value={Mobile}
-          onChange={handleMobile}
-          placeholder="enter Mobile"
-        />
-      </div>
-      <div>
-        <input type="button" value="Register" onClick={registerUser} />
-      </div>
-      <hr />
+      <h1>hello react and ajax</h1>
 
-      {userList.map((item) => (
-        <div>
-          {item.username},{item.password},{item.email},{item.Mobile}
+      <input type="button" value="make ajax call" onClick={makeAjaxCall} />
+      {ajaxList.map((item, index) => (
+        <div className="alert alert-primary" key={index}>
+          {item.title}
         </div>
       ))}
     </div>

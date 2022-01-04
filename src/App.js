@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function App() {
   return (
     <div>
@@ -5,21 +7,24 @@ export default function App() {
     </div>
   );
 }
-//====================Learning Interpolation============//
-//CAREFUL:: when working with object
+
 function MyComponent() {
-  const id1 = 100;
-  const background = "bg-info";
+  let [counter, setCounter] = useState(0);
+
+  const increment = () => {
+    counter = counter + 1;
+
+    //RERENDER THE UI :: UPDATE THE INNERHTML ; innerHTML
+
+    setCounter(counter);
+  };
   return (
     <div>
-      <h1>Interpolation {id1}</h1>
-      <h1>Interpolatiin {id1 + 100}</h1>
-
-      <h1 id="1"> interpolation {id1}</h1>
-      <h1 id={id1} className={background}>
-        {" "}
-        Interpolation{" "}
-      </h1>
+      <h1>Counter Application</h1>
+      <input type="button" value="click me" onClick={increment} />
+      <div>
+        <h1>Like {counter}</h1>
+      </div>
     </div>
   );
 }

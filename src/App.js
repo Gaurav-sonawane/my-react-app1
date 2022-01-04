@@ -1,29 +1,49 @@
-import { useState } from "react";
-
 export default function App() {
+  let list = [1, 1, 1, 1, 1, 1, 1, 1];
+
   return (
-    <div>
-      <MyComponent />
+    <div className="container-fluid">
+      <Header />
+
+      <div className="row mt-1">
+        {list.map(() => (
+          <div className="col-sm-12 col-md-4 mb1">
+            <MyCard />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-function MyComponent() {
-  let [counter, setCounter] = useState(0);
-
-  const increment = () => {
-    counter = counter + 1;
-
-    //RERENDER THE UI :: UPDATE THE INNERHTML ; innerHTML
-
-    setCounter(counter);
-  };
+function Header() {
   return (
-    <div>
-      <h1>Counter Application</h1>
-      <input type="button" value="click me" onClick={increment} />
-      <div>
-        <h1>Like {counter}</h1>
+    <div className="row bg-dark text-light p-3 sticky-top">
+      <div className="col h3">React App</div>
+    </div>
+  );
+}
+
+function MyCard() {
+  let cardTitle = "Card Titleee";
+  return (
+    <div className="card">
+      <div className="card-header">{cardTitle}</div>
+      <div className="card-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint obcaecati,
+        officiis nisi earum alias numquam recusandae possimus aut illo
+        asperiores dolores unde sit! Assumenda autem hic, eum accusamus saepe
+        consequuntur.
+        <input
+          className="btn btn-sm btn-outline-secondary w-50 mt-2"
+          type="button"
+          value="Buy Now"
+        />
+        <input
+          className="btn btn-sm btn-outline-secondary w-50 mt-2"
+          type="button"
+          value="Add to cart"
+        />
       </div>
     </div>
   );

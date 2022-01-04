@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 export default function App() {
   return (
     <div>
@@ -8,40 +9,32 @@ export default function App() {
 }
 
 function MyComponent() {
-  const id1 = 100;
-  const list = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  const [cardCss, setCardcss] = useState();
+  const [list, setList] = useState(["Hello world...."]);
 
-  const PrimaryTheme = () => setCardcss("bg-primary text-light fs-3 p-4 mb-1");
-  const DarkTheme = () => setCardcss("bg-dark text-light fs-3 p-4 mb-1");
-  const DangerTheme = () => setCardcss("bg-danger text-light fs-3 p-4 mb-1");
+  const tweetHere = () => {
+    const newList = [...list, "hello universe"];
+
+    setList(newList);
+  };
+
+  const deleteTweet = () => {
+    list.splice(0, 1);
+
+    const newList = [...list];
+    setList(newList);
+  };
 
   return (
     <div>
-      <input
-        className="btn btn-primary btn-sm"
-        type="button"
-        value="Primary Theme"
-        onClick={PrimaryTheme}
-      />
-      <input
-        className="btn btn-dark btn-sm"
-        type="button"
-        value="Dark Theme"
-        onClick={DarkTheme}
-      />
-      <input
-        className="btn btn-danger btn-sm"
-        type="button"
-        value="Danger Theme"
-        onClick={DangerTheme}
-      />
+      <h1>Working with input element</h1>
+      <input type="button" value="tweet to everyone" onClick={tweetHere} />
+      <input type="button" value="delete first tweet" onClick={deleteTweet} />
 
-      {list.map(() => (
-        <div className={cardCss}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, ipsa.
-        </div>
-      ))}
+      <div>
+        {list.map((item) => (
+          <div>{item}</div>
+        ))}
+      </div>
     </div>
   );
 }
